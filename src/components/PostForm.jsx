@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createPost } from "../redux/actions";
+import { createPost, showAlert } from "../redux/actions";
 
 
  class PostForm extends React.Component {
@@ -18,7 +18,7 @@ this.state={
     event.preventDefault()
    const {title}=this.state
    if(!title.trim()) {
-       return
+       return this.props.showAlert('Title of post could not be empty')
    }
    const newPost = {
        title, id: Date.now().toString()
@@ -36,6 +36,10 @@ handleOnChange = event =>{
 render () {
     return(
        <form onSubmit={this.handleSubmit}>
+
+{this.props.text && <div className="alert alert-danger" role="alert">
+  {this.props.text}
+</div>}
 
 <div className="form-group">
     <label htmlFor="title">Post header</label>
@@ -57,4 +61,8 @@ render () {
 
 }
 
-export default connect(null, {createPost})(PostForm)
+const mapStateToProps = (state)=>({
+    text: state.app.alert
+})
+
+export default connect(mapStateToProps, {createPost,showAlert})(PostForm)
