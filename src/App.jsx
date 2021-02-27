@@ -1,9 +1,7 @@
-import { createStore } from "redux";
 import FetchedPosts from "./components/FetchedPosts";
 import PostForm from "./components/PostForm";
 import Posts from "./components/Posts";
 
-const store = createStore()
 
 function App() {
   return (
