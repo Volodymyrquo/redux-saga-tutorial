@@ -10,7 +10,7 @@ const FetchedPosts = () => {
 
      if(loading) {
          return <div className="spinner-border text-success" role="status">
-         <span className="sr-only">Loading...</span>
+         <span className="sr-only" />
        </div>
      }
     if(!posts.length){ return <button
